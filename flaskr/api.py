@@ -27,6 +27,6 @@ def buy(name, value):
     return "nothing to see here"
 
 @api_bp.route('/sell/<assetname>/<int:value>')
-def buy(name, value):
+def sell(name, value):
     """Sell asset with value (in pence)"""
     return "nothing to see here"

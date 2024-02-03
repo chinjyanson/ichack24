@@ -1,3 +1,8 @@
-.container {
-    display: inline-grid;
+.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.section{
+    height: 800px;
+
 }

@@ -1,23 +1,26 @@
-from modules import AssetManager
+from modules.AssetManager import AssetManager
+
 class top:
     def __init__(self) -> None:
         self.games = []
         pass
 
     def new_game(self) -> None:
-        self.games.append(Game())
-        return self.games[-1]
+        self.games[len(self.games)] = Game()
 
 class Game:
     def __init__(self) -> None:
         self.players = {}
+
+        self.assetManager = AssetManager()
+        
+    
         pass
 
-    def new_player(self,id) -> None:
-        self.games[id] = Game()
+    def new_player(self,session) -> None:
+        self.games[session] = Game()
 
 
 class Player:
     def __init__(self) -> None:
-        self.assetManager = AssetManager.AssetManager()
         pass

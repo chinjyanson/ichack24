@@ -20,7 +20,10 @@ def create_app(test_config=None):
 
     # setup game
     game_manager = game.top()
-    game_instance = game_manager.new_game(0) # we are only creating one game for now for the sake of simplicity
+    game_instance = game_manager.new_game() # we are only creating one game for now for the sake of simplicity
+
+    # uniq IDs:
+    usr_id = 0
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -37,9 +40,14 @@ def create_app(test_config=None):
 
     # spins up an instance of the game
     @app.route('/game')
-    def hello():
-        session["user"] = "player"
+    def game_page():
+        session["id"] = usr_id
+        usr_id += 1
         return 'Hello, World!'
+
+    @app.route('/session')
+    def sshow_session():
+        return session["user"]
 
 
     @app.route("/") 
