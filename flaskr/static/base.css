@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+
+.story{
+    margin: 0px;
+    padding: 2px 15px;
+}
+
+html, body, .container{
+    width: 100%;
+    height:100%;
+    margin: 0px;
+    padding: 0px;
+    font-family: "inter", sans-serif;
+
+}
+div{    outline: 1px solid black;
+}
+
+.center{
+    vertical-align: middle;
+    text-align: center;
+}
+
+.container {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1.1fr 0.9fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "left news graphs"
+      "left news graphs"
+      "assets assets graphs";
+
+  }
+
+  
+  .left {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 1.4fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "menu"
+      "statement";
+    grid-area: left;
+  }
+  
+  .menu {  display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "stats name"
+      "totalassets name";
+    grid-area: menu;
+  }
+  
+  .stats {  display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "happiness health";
+    grid-area: stats;
+  }
+  
+  .happiness { grid-area: happiness; }
+  .happiness span {text}
+  .health { grid-area: health; }
+  
+  .totalassets { grid-area: totalassets; }
+  
+  .name { grid-area: name; }
+  
+  .statement { grid-area: statement; }
+  
+  .news {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.3fr 1.5fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "header header header"
+      "stories stories stories"
+      "stories stories stories";
+    grid-area: news;
+  }
+  
+  .header { grid-area: header; }
+  
+  .stories { grid-area: stories; }
+  
+  .graphs { grid-area: graphs; }
+  
+  .assets { grid-area: assets; }
+  

@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, redirect
 
 from . import api
 
@@ -37,13 +37,11 @@ def create_app(test_config=None):
     @app.route('/game')
     def game_page():
         if not ("id" in session.keys()):
-            id = id_count
-            id_count += 1
+            id = len(game.players)
             session["id"] = id
-            games[id] = game.player(id)
-            return 'Hello, World!'
-        else:
-            return session["id"]
+            game.players.append(game.Player())
+        return render_template("base.html", name = "username")
+        
 
     @app.route('/session')
     def sshow_session():
@@ -52,7 +50,7 @@ def create_app(test_config=None):
 
     @app.route("/")
     def home():
-        return render_template("base.html", name = "username")
+        return redirect("/game")
 
 
     # @app.route("/images")

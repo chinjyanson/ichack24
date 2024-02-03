@@ -42,15 +42,11 @@ class Player:
                 3. Monthly expenditure on essentials
         """
 
-        moneyforsavings = self.income
-
-        # Tax income
-        tax_amount = self.income * taxcalc.income_tax_rates(self.income*12) # annualize (not realistic)
-        moneyforsavings -= tax_amount
+        takeHomePay = taxcalc.calculate_takehome_income(self.income)
 
         # expenditure for happiness
-        expenditures = moneyforsavings * self.current_level.value
-        moneyforsavings -= expenditures
+        expenditures = takeHomePay * self.current_level.value
+        taekHomePay -= expenditures
         #TODO update average happiness
 
         self.assets.increaseSavings(moneyforsavings)
@@ -59,8 +55,8 @@ class Player:
         self.assets.updatevalue("sp500", 1.1) # e.g. s+p went up 10%
 
         # Increase income (job progression)
-        old_income = self.income
-        self.income += 100
+        pay_raise = 0.05 ** (1/12) + (0 if random.randint(1,30) != 1 else (random.randint(10, 20)/100))
+        self.income *= pay_raise
 
         return {"balancesheet":
                     {"income": old_income,

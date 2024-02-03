@@ -2,7 +2,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 MONTHS = 45 * 12
-STOCKTIME = 45 * 12 * 10 # number of times stock prices change a month
+STOCKTIME = 45 * 12 * 15 # number of times stock prices change a month
 
 def smpGenerator():
 
@@ -10,8 +10,7 @@ def smpGenerator():
     y_val = np.zeros(STOCKTIME)
     y_val[0] = np.random.randint(1, 10)
     for i in range(1, STOCKTIME):
-        y_val[i-1] = 1.00015 * y_val[i-1]
-        y_val[i] = np.clip(y_val[i-1] + np.random.randint(-5, 6), 1, 2000)
+        y_val[i] = np.clip(y_val[i-1] + np.random.randint(-5, 6), 1, 1000)
 
     plt.plot(x_val, y_val)
     plt.show()

@@ -13,12 +13,13 @@ news = {
             ("sp500 bad", "desc")
         ],
         NewsLevels.MED : [
-            ("title", "desc"),
-            ("title", "desc")
+            ("Federal Reserve Increases Interest Rates to 5%", "desc"),
+            ("", "desc")
         ],
         NewsLevels.HIGH : [
-            ("title", "desc"),
-            ("title", "desc")
+            ("Global Markets Reeling as War Erupts in Ukraine", ""),
+            ("Housing Markets Plummet After Big Banks 'Fail'", "desc"),
+            ("Earthquake Hits Japan Once More", "desc")
         ],
 
 

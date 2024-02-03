@@ -39,7 +39,11 @@ def setsaving(value):
     getplayer().assets.increaseSavings(value=value)
     return "ok"
 
-
+@api_bp.route('/dbgsetincome/<int:value>')
+def setincome(value):
+    """Set income levels"""
+    getplayer().income = value
+    return "ok"
 
 @api_bp.route('/level/<float:level>')
 def setlevel(level) -> tuple[bool, str]:
