@@ -19,11 +19,6 @@ def create_app(test_config=None):
     app.secret_key = 'TODO: changeme'
 
     # setup game
-    game_manager = game.top()
-    game_instance = game_manager.new_game() # we are only creating one game for now for the sake of simplicity
-
-    # uniq IDs:
-    usr_id = 0
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -41,17 +36,25 @@ def create_app(test_config=None):
     # spins up an instance of the game
     @app.route('/game')
     def game_page():
-        session["id"] = usr_id
-        usr_id += 1
-        return 'Hello, World!'
+        if not ("id" in session.keys()):
+            id = id_count
+            id_count += 1
+            session["id"] = id
+            games[id] = game.player(id)
+            return 'Hello, World!'
+        else:
+            return session["id"]
 
     @app.route('/session')
     def sshow_session():
         return session["user"]
 
 
-    @app.route("/") 
-    def home(): 
-        return render_template("base.html", name = "username") 
+    @app.route("/")
+    def home():
+        return render_template("base.html", name = "username")
 
-    return app 
+
+    # @app.route("/images")
+
+    return app
