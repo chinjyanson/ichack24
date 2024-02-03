@@ -1,15 +1,26 @@
 import os
 
-from flask import Flask
+from flask import Flask, render_template, session
 
+from . import api
+
+from modules import game
 
 def create_app(test_config=None):
-    # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
+    # create and configure flask
+    app = Flask(__name__, instance_relative_config=True, template_folder="templates")
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
+
+    app.register_blueprint(api.api_bp)
+
+    app.secret_key = 'TODO: changeme'
+
+    # setup game
+    game_manager = game.top()
+    game_instance = game_manager.new_game(0) # we are only creating one game for now for the sake of simplicity
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -24,9 +35,15 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/hello')
+    # spins up an instance of the game
+    @app.route('/game')
     def hello():
+        session["user"] = "player"
         return 'Hello, World!'
 
-    return app
+
+    @app.route("/") 
+    def home(): 
+        return render_template("base.html", name = "username") 
+
+    return app 

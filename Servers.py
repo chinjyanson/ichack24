@@ -5,12 +5,12 @@ used_game_codes = {}
 
 def new_game_code():
     code = random.randint(0,9999)
-    while used_game_codes[code] == true:
+    while used_game_codes[code] == True:
         code = random.randint(0,9999)
-    used_game_codes += code;
+    used_game_codes += code
     return code
 
-class Game:
+class Servers:
 
     def __init__(self) -> None:
         self.players = []
