@@ -19,9 +19,14 @@ class Player:
         self.time   = 0 # time passed (in months)
         self.current_level = Levels.LOW # Happiness level (selectable)
         self.avg_happiness = Levels.LOW.value
+        interestgraph = grapher.InterestRate()
         self.graphs = {
-            "snp500":grapher.SP500(),
-            }
+            "sp500":grapher.SP500(),
+            "gold":grapher.Gold(),
+            "crypto":grapher.Bitcoin(),
+            "interestrate": interestgraph,
+            "savings": grapher.Savings(interestgraph.y)
+        }
 
     def __getattr__(self, name: str) -> Any:
         """pass other stuff through direct to assetmanager"""
@@ -61,7 +66,13 @@ class Player:
         self.assets.increaseSavings(takeHomePay)
 
         #TODO update asset values
+
+        # update asset valuses
         self.assets.updatevalue("sp500", 1.1) # e.g. s+p went up 10%
+        for asset in self.assets.getAssets():
+
+            self.assets.updatevalue("sp500", 1.1)
+
 
         old_income = self.income
         # Increase income (job progression)
@@ -70,22 +81,38 @@ class Player:
 
         self.time +=1
 
+        # Generate news
+        asset, articles = random.choice(list(newsgen.news.items()))
+        print(asset)
+        asset_data = self.graphs[asset]
+        asset_prediction = asset_data.getIncrease(grapher.POINTS_PER_MONTH*(12+self.time), grapher.POINTS_PER_MONTH*(13+self.time))
+        news_level = 1
+        if asset_prediction < 0:
+            news_level = 0
+        elif asset_prediction > 0:
+            news_level = 2
+        # news = random.choice(articles[NewsLevels(news_level)])
+
+        news = dict(newsgen.news[asset][NewsLevels(news_level)])
+
         return {
             "balancesheet":{
                 "income": old_income,
                 "tax": -1 * tax_amount,
-                "expenditures": -1 * expenditures
+                "expenditures": -1 * expenditures,
+                "assets": {"sp500": -100}
             },
             "happinesslevel": self.current_level.name,
             "time": self.time,
-            "value":self.assets.getTotalValue(),
-            "news":  dict(newsgen.news["gold"][newsgen.NewsLevels.MED]),
+            "value": self.assets.getTotalValue(),
+            "news": news,
             "hint": Hints[random.randint(0,len(Hints)-1)],
             "graphs":
                 {item:
                     {
                     "graph": self.graphs[item].b64GraphPNG(0 + grapher.POINTS_PER_MONTH*self.time, grapher.POINTS_PER_MONTH*(12+self.time)),
-                    "increasepm": self.graphs[item].getIncrease(0 + grapher.POINTS_PER_MONTH*self.time, grapher.POINTS_PER_MONTH*(12+self.time))
+                    "increasepm": self.graphs[item].getIncrease(grapher.POINTS_PER_MONTH*(11+self.time), grapher.POINTS_PER_MONTH*(12+self.time)),
+                    "increasepy": self.graphs[item].getIncrease(grapher.POINTS_PER_MONTH*(0+self.time), grapher.POINTS_PER_MONTH*(12+self.time))
                     }
                  for item in self.graphs
                  }

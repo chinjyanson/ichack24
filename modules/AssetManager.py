@@ -20,12 +20,12 @@ class SP500(Asset):
     def __init__(self, value: float = 0):
         super().__init__(value=value)
 
-class Bonds(Asset):
-    def __init__(self, value: float = 0):
-        super().__init__(value=value)
+# class Bonds(Asset):
+#     def __init__(self, value: float = 0):
+#         super().__init__(value=value)
 
-    def roi(interest: int):
-        value *= (1 + interest)
+#     def roi(interest: int):
+#         value *= (1 + interest)
 
 class Bitcoin(Asset):
     def __init__(self, value: float = 0):
@@ -34,7 +34,7 @@ class Bitcoin(Asset):
 
 class AssetManager:
     def __init__(self):
-        self.assets = {"savings": Savings(),"sp500": SP500(), "gold": Gold(), "bitcoin": Bitcoin(), "bonds": Bonds()}
+        self.assets = {"savings": Savings(),"sp500": SP500(), "gold": Gold(), "crypto": Bitcoin(), } # "bonds": Bonds()
 
     def buy(self, name: str, value: float) -> tuple[bool, str]:
         if value <= 0:
@@ -57,6 +57,9 @@ class AssetManager:
     def updatevalue(self, name: str, increase: float):
         """Update the value of an asset, based on the price increase"""
         self.assets[name].value *= increase
+
+    def getAssets(self):
+        return self.assets.keys()
 
     def getValues(self):
         """Gets dict of all assets with values"""

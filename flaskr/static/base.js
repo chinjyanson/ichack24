@@ -14,6 +14,14 @@ function nextmonth() {
         document.getElementById("age").textContent=age+"y "+months+"m";
         document.getElementById("assets").textContent="£"+Math.round(data.value*100)/100;
 
+
+        // statement
+
+        statement = document.getElementById("statement")
+        var income = document.createElement("p")
+        statement.appendChild()
+
+
         // setnews
 
         stories = document.getElementById("stories")
@@ -43,12 +51,19 @@ function nextmonth() {
         console.log(Object.entries(data.hint));
 
         for (const [key, value] of Object.entries(data.graphs)) {
+            console.log(key,value)
             var graph = document.createElement('div');
             var h3 = document.createElement('h3');
             h3.innerText=key;
+
+            var span = document.createElement('span');
+            span.innerText=Math.round((value.increasepm-1)*10000)/100+"% (Last month)"
+            span.innerText+=" / " + Math.round((value.increasepy-1)*10000)/100+"% (Last year)"
+
             var img = document.createElement('img');
-            img.src = data.graphs.snp500;
+            img.src = value.graph;
             graph.appendChild(h3);
+            graph.appendChild(span);
             graph.appendChild(img);
             graphs.appendChild(graph)
 

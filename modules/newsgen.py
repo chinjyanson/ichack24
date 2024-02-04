@@ -1,9 +1,9 @@
 from enum import Enum
 
 class NewsLevels(Enum):
-    LOW = 0.8
+    LOW = 0
     MED = 1
-    HIGH = 1.2
+    HIGH = 2
 
 
 news = {
@@ -24,7 +24,6 @@ news = {
             ("Nvidia smashes records as company's value rises by £232bn in a month - but bad news for Tesla", "Tesla's market cap shrank by £151.6bn - 24% - after Elon Musk warned growth in 2024 will be 'notably lower' than previous years.")
         ],
     },
-
     "gold": {
         NewsLevels.LOW : [
             ("New Gold Reserves Found In Scandinavia", "New rare earth deposits descovered in norway reduces europes dependance on foreign imports"),
@@ -39,23 +38,21 @@ news = {
             ("Is gold the solution to toughing out the current rough economic situation?", "Investors can invest in gold through exchange-traded funds (ETFs), buying stock in gold miners and associated companies, and purchasing a physical product such as coins or bullion."),
         ]
     },
-
-    "bond": {
-        NewsLevels.LOW : [
-            ("Gold Prices Plummet in Face of Strengthening Dollar and Economic Headwinds: Investors Brace for Market Challenges", "desc"),
-            ("Gold Prices Experience Sharp Decline as Economic Recovery Gathers Pace: Investors Shift Focus Amidst Reduced Safe-Haven Appeal", "desc"),
-            ("Gold prices struggle before inflation", "desc"),
-        ],
-        NewsLevels.MED : [
-            ("Top 5 gold rings to buy for your loved ones", "desc"),
-            ("Distinguishing between Fool's gold and real gold","Real gold weights more than fool's gold which shares a deceptively similar golden lustre")
-        ],
-        NewsLevels.HIGH : [
-            ("Gold shines as US Economy slows", ""),
-            ("", "desc")
-        ]
-    },
-
+    # "bond": {
+    #     NewsLevels.LOW : [
+    #         ("Gold Prices Plummet in Face of Strengthening Dollar and Economic Headwinds: Investors Brace for Market Challenges", "desc"),
+    #         ("Gold Prices Experience Sharp Decline as Economic Recovery Gathers Pace: Investors Shift Focus Amidst Reduced Safe-Haven Appeal", "desc"),
+    #         ("Gold prices struggle before inflation", "desc"),
+    #     ],
+    #     NewsLevels.MED : [
+    #         ("Top 5 gold rings to buy for your loved ones", "desc"),
+    #         ("Distinguishing between Fool's gold and real gold","Real gold weights more than fool's gold which shares a deceptively similar golden lustre")
+    #     ],
+    #     NewsLevels.HIGH : [
+    #         ("Gold shines as US Economy slows", ""),
+    #         ("", "desc")
+    #     ]
+    # },
     "crypto" : {
         NewsLevels.LOW : [
             ("Bitcoin founder jailed", "desc"),
