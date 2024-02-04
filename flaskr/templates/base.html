@@ -10,22 +10,20 @@
         <div class="left bordered">
         <div class="menu center">
             <div class="stats">
-            <div class="happiness">
-                <span>Happiness 9/10</span>
-            </div>
-            <div class="health bordered">
-                <span>Health 9/10</span>
-
-            </div>
+                <div class="happiness bordered">
+                    <span >Happiness</br><div class="happinessbar">9/10</div></span>
+                </div>
+                <div class="health bordered">
+                    <span >Health</br><div class="healthbar">9/10</div></span>
+                </div>
             </div>
             <div class="totalassets">
-                <span id="assets">Total Assets: £5000</span>
+                <span id="assets" class="indicator">Total Assets: £5000</span>
             </div>
             <div class="name">
-                <span>Jeff Bloggs </span><span id="age">18y 0m</span>
+                <span class="indicator">Jeff Bloggs </span><span id="age">18y 0m</span>
                 <br>
-                <input id="nextmonth" type="button" value="Next month" onclick="nextmonth();" />
-
+                <input id="nextmonth" type="button" class="myButton" value="Next month" onclick="nextmonth();" />
             </div>
         </div>
         <div class="statement">
@@ -42,41 +40,12 @@
                 <h2>Latest News</h2>
             </div>
             <div id="stories" class="stories" style="overflow: auto;">
-                <!-- <h2>This Month<h2> -->
-                <div class="story">
-                    <h3>S&P on track for bad quarter</h3>
-                    <p>more description text about how this event is really fucking bad</p>
-                </div>
-                <div class="story">
-                    <h3>BTc on track for bad quarter</h3>
-                    <p>more description text about how this event is really fucking bad</p>
-                </div>
-                <div class="story">
-                    <h3>S&P on track for bad quarter</h3>
-                    <p>more description text about how this event is really fucking bad</p>
-                </div>
-                <div class="story">
-                    <h3>S&P on track for bad quarter</h3>
-                    <p>more description text about how this event is really fucking bad</p>
-                </div>
-                <div class="story">
-                    <h3>S&P on track for bad quarter</h3>
-                    <p>more description text about how this event is really fucking bad</p>
-                </div>
-                <div class="story">
-                    <h3>S&P on track for bad quarter</h3>
-                    <p>more description text about how this event is really fucking bad</p>
-                </div>
-                <div class="story">
-                    <h3>S&P on track for bad quarter</h3>
-                    <p>more description text about how this event is really fucking bad</p>
-                </div>
-
-
             </div>
         </div>
-        <div class="graphs">
-            graphs
+        <div id="graphs" class="graphs">
+            <!-- graphs -->
+            <!-- <img id="snp500graph" alt="" style="width: 100%; "> -->
+            <!-- <img src -->
         </div>
         <div class="assets">
             <table >
@@ -89,6 +58,10 @@
                 </tr> -->
             </tbody>
             </table>
+            <div id="tips">
+                <div style="font-weight: 600; text-align: center;" >Tip</div>
+                <div id = "tip"></div>
+            </div>
         </div>
     </div>
 </body>

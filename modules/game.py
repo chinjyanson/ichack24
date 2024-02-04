@@ -1,7 +1,11 @@
 from typing import Any
-from modules import AssetManager, taxcalc, bitcoingenerator
+from modules import AssetManager, taxcalc
 from enum import Enum
 import random
+from modules import newsgen
+# from modules.graphgenerators.generic import StockGenerator
+from modules.graphgenerators import grapher
+from modules.newsgen import *
 
 class Levels(Enum): # level, plus amount which is frac of income
     LOW = 0.15
@@ -15,7 +19,9 @@ class Player:
         self.time   = 0 # time passed (in months)
         self.current_level = Levels.LOW # Happiness level (selectable)
         self.avg_happiness = Levels.LOW.value
-        self.graphs = [bitcoingenerator.bitcoingenerator()]
+        self.graphs = {
+            "snp500":grapher.SP500(),
+            }
 
     def __getattr__(self, name: str) -> Any:
         """pass other stuff through direct to assetmanager"""
@@ -64,27 +70,32 @@ class Player:
 
         self.time +=1
 
-        return {"balancesheet":
-                    {"income": old_income,
-                    "tax": -1 * tax_amount,
-                    "expenditures": -1 * expenditures
-                    },
-                "happinesslevel": self.current_level.name,
-                "time": self.time,
-                "value":self.assets.getTotalValue(),
-                "news": {"title": "desc",
-                         "title2": "desc2"}
-                }
+        return {
+            "balancesheet":{
+                "income": old_income,
+                "tax": -1 * tax_amount,
+                "expenditures": -1 * expenditures
+            },
+            "happinesslevel": self.current_level.name,
+            "time": self.time,
+            "value":self.assets.getTotalValue(),
+            "news":  dict(newsgen.news["gold"][newsgen.NewsLevels.MED]),
+            "hint": Hints[random.randint(0,len(Hints)-1)],
+            "graphs":
+                {item:
+                    {
+                    "graph": self.graphs[item].b64GraphPNG(0 + grapher.POINTS_PER_MONTH*self.time, grapher.POINTS_PER_MONTH*(12+self.time)),
+                    "increasepm": self.graphs[item].getIncrease(0 + grapher.POINTS_PER_MONTH*self.time, grapher.POINTS_PER_MONTH*(12+self.time))
+                    }
+                 for item in self.graphs
+                 }
+            }
 
     def GenerateNews(self):
 
         for g in self.graphs:
             # is self.time in the right range?
             threeMonthChange = g.yval[self.time+3] - g.yval[self.time] if self.time + 3 < len(g.yval) else 0
-
-
-
-
 
 
 players = []

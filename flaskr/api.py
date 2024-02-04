@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, abort
 from jinja2 import TemplateNotFound
-
+import random
 
 from modules.game import Levels, getplayer
 

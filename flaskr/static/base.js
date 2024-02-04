@@ -37,6 +37,29 @@ function nextmonth() {
             stories.appendChild(story);
         }
 
+        // set image src
+        graphs = document.getElementById("graphs")
+        graphs.innerHTML=""
+        console.log(Object.entries(data.hint));
+
+        for (const [key, value] of Object.entries(data.graphs)) {
+            var graph = document.createElement('div');
+            var h3 = document.createElement('h3');
+            h3.innerText=key;
+            var img = document.createElement('img');
+            img.src = data.graphs.snp500;
+            graph.appendChild(h3);
+            graph.appendChild(img);
+            graphs.appendChild(graph)
+
+        }
+
+        // set tip
+        var hint = ""
+        for([key,value] of Object.entries(data.hint)){
+            hint += value
+        }
+        document.getElementById("tip").innerHTML = hint;
 
         updateAssets();
 
@@ -63,6 +86,7 @@ function updateAssets(){
     fetch("/api/getassets").then(function(response) {
         return response.json()
       }).then(function(data) {
+
         table = document.getElementById("assettable");
         table.innerHTML = "<tr><th>Name</th><th>Value</th><th>Buy</th><th>Sell</th></tr>";
         for (const [key, value] of Object.entries(data)) {
@@ -71,7 +95,7 @@ function updateAssets(){
             var td1 = document.createElement('td');
             var text1 = document.createTextNode(key);
             var td2 = document.createElement('td');
-            var text2 = document.createTextNode(value);
+            var text2 = document.createTextNode(Math.round(value));
             // var td3 = document.createElement('td');
             // td3.innerHTML = "?"
             var td4 = document.createElement('td');

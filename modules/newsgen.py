@@ -10,12 +10,12 @@ news = {
     "sp500":{
         NewsLevels.LOW : [
             ("Layoffs in the tech sector", "Microsoft Leads Another Busy Week Of Tech Layoffs That Sees More Cuts From Google, Salesforce And Flexport"),
-            ("SMiddle East war could spark global recession, say Wall Street experts", "A global recession could be set in motion by the conflict in the Middle East as the humanitarian crisis compounds the challenges facing an already precarious world economy, two of Wall Street’s biggest names have warned."),
+            ("Middle East war could spark global recession, say Wall Street experts", "A global recession could be set in motion by the conflict in the Middle East as the humanitarian crisis compounds the challenges facing an already precarious world economy, two of Wall Street’s biggest names have warned."),
             ("If Interest Rates Continue To Rise, What Happens To Stock Prices?", "With interest rates at their highest levels in decades, the stock market doing so well this year has been a head-scratcher.")
         ],
         NewsLevels.MED : [
-            ("Florida Man Trapped in Unlocked Closet For Two Days", "John Arwood, 31, and Amber Campbell, 25, were found in a janitor’s closet on the Daytona State College campus."),
-            ("‘My mind had been shattered into a million pieces’: inside the Scientology-linked UK rehab centre", "‘My mind had been shattered into a million pieces’: inside the Scientology-linked UK rehab centreIt’s listed on the NHS website and claims to be a ‘world leader’ in tackling substance abuse. But there is a shocking side to the Narconon addiction facility – as our nine-month investigation reveals")
+            ("Florida Man Trapped in Unlocked Closet For Two Days", "John Arwood, 31, and Amber Campbell, 25, were found in a janitor's closet on the Daytona State College campus."),
+            ("'My mind had been shattered into a million pieces': inside the Scientology-linked UK rehab centre", "'My mind had been shattered into a million pieces': inside the Scientology-linked UK rehab centre. It's listed on the NHS website and claims to be a 'world leader' in tackling substance abuse. But there is a shocking side to the Narconon addiction facility - as our nine-month investigation reveals"),
             ("Mac Jones Reveals He Called Tom Brady To Discuss Never Calling Tom Brady Again","FOXBOROUGH, MA—Sharing details about a recent conversation with the former New England field general, Patriots quarterback Mac Jones revealed this week that he called Tom Brady to discuss never calling Tom Brady again.")
         ],
         NewsLevels.HIGH : [
@@ -75,5 +75,10 @@ news = {
 
 Hints = [
     'An index mutual fund or ETF (exchange-traded fund) tracks the performance of a specific market benchmark—or "index," like the popular S&P 500 Index—as closely as possible. That`s why you may hear people refer to indexing as a "passive" investment strategy.',
-    'contrary '
+    'During times of economic uncertainties, the value of gold typically increases as investors seek a safe-haven asset. Gold is considered a store of value and is not directly tied to any currency, making it attractive when there are concerns about currency devaluation.',
+    'Bonds are debt securities issued by governments, municipalities, or corporations to raise capital. Investors who purchase bonds are essentially lending money to the issuer in exchange for periodic interest payments and the return of the principal amount at maturity.',
+    'Cryptocurrencies can be considered unreliable investments due to their high volatility, with prices subject to rapid and unpredictable fluctuations. Additionally, the lack of regulation, susceptibility to security breaches, and the speculative nature of the market make cryptocurrencies riskier compared to traditional investments.',
+    'Investing too heavily in index funds can be risky because it exposes an investor to the overall market, including overvalued or underperforming sectors. Additionally, a lack of diversification beyond the index may result in missed opportunities for better-performing individual stocks or sectors.',
+    'Day trading is generally discouraged for individual investors as the high risk stems from unpredictable short-term price movements, and individual investors are unlikely to possess superior knowledge compared to large funds with dedicated research teams. Moreover, the frequent buying and selling associated with day trading often lead to increased transaction costs and the potential for significant financial losses.',
+    'Buying a house isnt necessarilly chepaer in the long run than renting - the monies put toward a down payment could be invested into more profitable assets. The large ammounts of interes incoured through mortgages and the illiquidity of a primary residence makes property a difficult investment.'
 ]
