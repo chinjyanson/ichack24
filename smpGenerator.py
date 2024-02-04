@@ -4,14 +4,13 @@ from matplotlib import pyplot as plt
 MONTHS = 45 * 12
 STOCKTIME = 45 * 12 * 10 # number of times stock prices change a month
 
-def smpGenerator():
-
+def waveformGenerator(STOCKTIME, skew, volatility):
     x_val = np.arange(0,STOCKTIME,1)
     y_val = np.zeros(STOCKTIME)
-    y_val[0] = np.random.randint(1, 10)
+    y_val[0] = np.random.randint(10, 50)
     for i in range(1, STOCKTIME):
-        y_val[i-1] = 1.00015 * y_val[i-1]
-        y_val[i] = np.clip(y_val[i-1] + np.random.randint(-5, 6), 1, 2000)
+        y_val[i-1] = skew * y_val[i-1]
+        y_val[i] = np.clip(y_val[i-1] + np.random.randint(-volatility, volatility+1), 1, 2000)
 
     plt.plot(x_val, y_val)
     plt.show()
@@ -28,7 +27,7 @@ def readGraph(time, xval, yval):
     return plt
 
 
-xval, yval = smpGenerator()
+xval, yval = waveformGenerator(STOCKTIME, 1.0002, 5)
 plt = readGraph(12, xval, yval)
 
 #plt.savefig('smp.png',  bbox_inches='tight')

@@ -14,6 +14,7 @@ class Player:
         self.time   = 0 # time passed (in months)
         self.current_level = Levels.LOW # Happiness level (selectable)
         self.avg_happiness = Levels.LOW.value
+        #self.graphs = bitcoinGenerator()
 
     def __getattr__(self, name: str) -> Any:
         """pass other stuff through direct to assetmanager"""
@@ -66,6 +67,16 @@ class Player:
                 "happinesslevel": self.current_level.name,
                 "time": self.time
                 }
+    
+    def GenerateNews():
+        threeMonthChange = 0.123
+        sixMonthChange   = 0.22
+        oneYearChange    = 0.12
+        
+        
+
+
+        
 
 players = []
 players.append(Player())

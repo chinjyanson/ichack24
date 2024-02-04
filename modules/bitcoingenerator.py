@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 MONTHS = 45 * 12
 STOCKTIME = 45 * 12 * 15 # number of times stock prices change a month
 
-def smpGenerator():
+def bitcoingenerator():
 
     x_val = np.arange(0,STOCKTIME,1)
     y_val = np.zeros(STOCKTIME)
@@ -12,8 +12,8 @@ def smpGenerator():
     for i in range(1, STOCKTIME):
         y_val[i] = np.clip(y_val[i-1] + np.random.randint(-5, 6), 1, 1000)
 
-    plt.plot(x_val, y_val)
-    plt.show()
+    # plt.plot(x_val, y_val)
+    # plt.show()
 
     return x_val, y_val
 
@@ -27,7 +27,7 @@ def readGraph(time, xval, yval):
     return plt
 
 
-xval, yval = smpGenerator()
+xval, yval = bitcoingenerator()
 plt = readGraph(12, xval, yval)
 
 #plt.savefig('smp.png',  bbox_inches='tight')
