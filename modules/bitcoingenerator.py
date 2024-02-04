@@ -22,7 +22,7 @@ def readGraph(time, xval, yval):
     newx = xval[:time]
     newy = yval[:time]
     plt.plot(newx, newy)
-    plt.show()
+    # plt.show()
 
     return plt
 

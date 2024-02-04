@@ -7,10 +7,10 @@ def calculate_takehome_income(income: float) -> float:
     takehome += 12570
     remaining = income - 12_570
     if (income <= 50_270):
-        return takehome + 0.2*remaining
-    takehome += 0.2 * (50_270 - 12_570)
+        return takehome + 0.8*remaining
+    takehome += 0.8 * (50_270 - 12_570)
     remaining -= (50_270 - 12_570)
     if (income <= 125_140):
-        return takehome + 0.4*remaining
-    return takehome + 0.4*(125_140 - 50_270) + 0.45*(income - 125_140)
+        return takehome + 0.6*remaining
+    return takehome + 0.6*(125_140 - 50_270) + 0.55*(income - 125_140)
 

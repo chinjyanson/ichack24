@@ -14,11 +14,12 @@ def index():
 @api_bp.route('/dbgprint')
 def dbgprint():
     return {
-        "assets" : [(a.__repr__(), a.value) for a in getplayer().assets.assets.values()],
+        "assets" : [(a.__class__.__name__, a.value) for a in getplayer().assets.assets.values()],
         "income" : getplayer().income,
         "time": getplayer().time,
         "current_level": (getplayer().current_level.name, getplayer().current_level.value),
-        "avg_happiness": getplayer().avg_happiness
+        "avg_happiness": getplayer().avg_happiness,
+        "value":getplayer().assets.getTotalValue()
     }
 
 
@@ -70,3 +71,17 @@ def sell(assetname, value):
         return  msg, 500
     return msg, 200
 
+@api_bp.route('/getassets')
+def getassets():
+    """...."""
+    return getplayer().assets.getValues()
+
+@api_bp.route('/gettotal')
+def gettotal():
+    """...."""
+    return {"value":getplayer().assets.getTotalValue()}
+
+@api_bp.route('/getimage')
+def getimage():
+    """...."""
+    return {"value":getplayer().assets.getTotalValue()}

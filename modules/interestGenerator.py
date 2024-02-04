@@ -10,8 +10,8 @@ def smpGenerator():
         y_val[i] = np.clip(y_val[i-1] + np.random.randint(-1, 1 + 1), 0, 50)
 
     plt.step(x_val, y_val)
-    plt.show()
-
+    # plt.show()
+#
     return x_val, y_val
 
 def readGraph(time, xval, yval):
@@ -20,7 +20,7 @@ def readGraph(time, xval, yval):
     newx = xval[:time]
     newy = yval[:time]
     plt.step(newx, newy)
-    plt.show()
+    # plt.show()
 
 
 xval, yval = smpGenerator()

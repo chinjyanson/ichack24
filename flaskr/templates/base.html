@@ -1,10 +1,11 @@
-<html> 
-    <head> 
+<html>
+    <head>
         <link rel="stylesheet" href="static/base.css">
-        <title>Finance Game Thing</title> 
-    </head> 
-  
-    <body> 
+        <title>Finance Game Thing</title>
+        <script src="static/base.js"></script>
+
+    </head>
+    <body onload="loads()">
     <div class="container">
         <div class="left bordered">
         <div class="menu center">
@@ -18,10 +19,13 @@
             </div>
             </div>
             <div class="totalassets">
-                <span>Total Assets: £5000</span>
+                <span id="assets">Total Assets: £5000</span>
             </div>
             <div class="name">
-                <span>Jeff Bloggs - 18 ¹⁄₁₂</span>
+                <span>Jeff Bloggs </span><span id="age">18y 0m</span>
+                <br>
+                <input id="nextmonth" type="button" value="Next month" onclick="nextmonth();" />
+
             </div>
         </div>
         <div class="statement">
@@ -37,7 +41,7 @@
             <div class="header center">
                 <h2>Latest News</h2>
             </div>
-            <div class="stories" style="overflow: auto;">
+            <div id="stories" class="stories" style="overflow: auto;">
                 <!-- <h2>This Month<h2> -->
                 <div class="story">
                     <h3>S&P on track for bad quarter</h3>
@@ -75,12 +79,17 @@
             graphs
         </div>
         <div class="assets">
-            <table>
-                <tr>
-                    <th>hea</th>
-                </tr>
+            <table >
+                <tbody id="assettable">
+                <!-- <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                    <th>Buy</th>
+                    <th>Sell</th>
+                </tr> -->
+            </tbody>
             </table>
         </div>
     </div>
-</body> 
+</body>
 </html>

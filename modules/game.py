@@ -1,6 +1,7 @@
 from typing import Any
-from modules import AssetManager, taxcalc
+from modules import AssetManager, taxcalc, bitcoingenerator
 from enum import Enum
+import random
 
 class Levels(Enum): # level, plus amount which is frac of income
     LOW = 0.15
@@ -14,7 +15,7 @@ class Player:
         self.time   = 0 # time passed (in months)
         self.current_level = Levels.LOW # Happiness level (selectable)
         self.avg_happiness = Levels.LOW.value
-        #self.graphs = bitcoinGenerator()
+        self.graphs = [bitcoingenerator.bitcoingenerator()]
 
     def __getattr__(self, name: str) -> Any:
         """pass other stuff through direct to assetmanager"""
@@ -43,21 +44,25 @@ class Player:
                 3. Monthly expenditure on essentials
         """
 
-        takeHomePay = taxcalc.calculate_takehome_income(self.income)
+        takeHomePay = taxcalc.calculate_takehome_income(self.income*12)/12
+        tax_amount = takeHomePay - self.income
 
         # expenditure for happiness
         expenditures = takeHomePay * self.current_level.value
-        taekHomePay -= expenditures
+        takeHomePay -= expenditures
         #TODO update average happiness
 
-        self.assets.increaseSavings(moneyforsavings)
+        self.assets.increaseSavings(takeHomePay)
 
         #TODO update asset values
         self.assets.updatevalue("sp500", 1.1) # e.g. s+p went up 10%
 
+        old_income = self.income
         # Increase income (job progression)
-        pay_raise = 0.05 ** (1/12) + (0 if random.randint(1,30) != 1 else (random.randint(10, 20)/100))
-        self.income *= pay_raise
+        pay_raise = ((1.05 ** (1/12))) + (0 if random.randint(1,30) != 1 else (random.randint(10, 20)/100))
+        self.income = round(self.income*pay_raise)
+
+        self.time +=1
 
         return {"balancesheet":
                     {"income": old_income,
@@ -65,18 +70,22 @@ class Player:
                     "expenditures": -1 * expenditures
                     },
                 "happinesslevel": self.current_level.name,
-                "time": self.time
+                "time": self.time,
+                "value":self.assets.getTotalValue(),
+                "news": {"title": "desc",
+                         "title2": "desc2"}
                 }
-    
-    def GenerateNews():
-        threeMonthChange = 0.123
-        sixMonthChange   = 0.22
-        oneYearChange    = 0.12
-        
-        
+
+    def GenerateNews(self):
+
+        for g in self.graphs:
+            # is self.time in the right range?
+            threeMonthChange = g.yval[self.time+3] - g.yval[self.time] if self.time + 3 < len(g.yval) else 0
 
 
-        
+
+
+
 
 players = []
 players.append(Player())

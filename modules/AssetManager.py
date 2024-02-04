@@ -37,6 +37,8 @@ class AssetManager:
         self.assets = {"savings": Savings(),"sp500": SP500(), "gold": Gold(), "bitcoin": Bitcoin(), "bonds": Bonds()}
 
     def buy(self, name: str, value: float) -> tuple[bool, str]:
+        if value <= 0:
+            return (False, "Value must be positive")
         if self.assets["savings"].value < value:
             return (False, f"Not enough savings savings:{self.assets['savings'].value} want:{value}")
         self.assets["savings"].value -= value
@@ -44,6 +46,8 @@ class AssetManager:
         return (True, "Success")
 
     def sell(self, name: str, value: float) -> tuple[bool, str]:
+        if value<=0:
+            return (False, "Value must be positive")
         if self.assets[name].value < value:
             return (False, "Selling more than owned")
         self.assets[name].value -= value
