@@ -8,9 +8,9 @@ from modules.graphgenerators import grapher
 from modules.newsgen import *
 
 class Levels(Enum): # level, plus amount which is frac of income
-    LOW = 0.15
-    MED = 0.3
-    HIGH = 0.55
+    LOW = 0.35
+    MED = 0.50
+    HIGH = 0.65
 
 class Player:
     def __init__(self) -> None:
@@ -65,13 +65,12 @@ class Player:
 
         self.assets.increaseSavings(takeHomePay)
 
-        #TODO update asset values
 
         # update asset valuses
-        self.assets.updatevalue("sp500", 1.1) # e.g. s+p went up 10%
-        for asset in self.assets.getAssets():
-
-            self.assets.updatevalue("sp500", 1.1)
+        capital_gains = {}
+        for asset in list(self.assets.getAssets()):
+            increase = self.graphs[asset].getIncrease(grapher.POINTS_PER_MONTH*(12+self.time), grapher.POINTS_PER_MONTH*(13+self.time))
+            capital_gains[asset] = self.assets.updatevalue(asset, increase)
 
 
         old_income = self.income
@@ -83,10 +82,10 @@ class Player:
 
         # Generate news
         asset, articles = random.choice(list(newsgen.news.items()))
-        print(asset)
         asset_data = self.graphs[asset]
-        asset_prediction = asset_data.getIncrease(grapher.POINTS_PER_MONTH*(12+self.time), grapher.POINTS_PER_MONTH*(13+self.time))
+        asset_prediction = asset_data.getIncrease(grapher.POINTS_PER_MONTH*(12+self.time), grapher.POINTS_PER_MONTH*(13+self.time)) - 1
         news_level = 1
+
         if asset_prediction < 0:
             news_level = 0
         elif asset_prediction > 0:
@@ -99,8 +98,8 @@ class Player:
             "balancesheet":{
                 "income": old_income,
                 "tax": -1 * tax_amount,
-                "expenditures": -1 * expenditures,
-                "assets": {"sp500": -100}
+                "expenditures":  expenditures,
+                "capitalgains": capital_gains
             },
             "happinesslevel": self.current_level.name,
             "time": self.time,
@@ -126,7 +125,4 @@ class Player:
 
 
 players = []
-players.append(Player())
-
-def getplayer() -> Player:
-    return players[0]
+#players.append(Player())

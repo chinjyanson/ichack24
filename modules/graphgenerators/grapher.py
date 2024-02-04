@@ -61,7 +61,7 @@ class Gold(Generator):
 
 class Bitcoin(Generator):
     def __init__(self) -> None:
-        super().__init__(params=GenParams(1.1, 0.21, 3))
+        super().__init__(params=GenParams(1.02, 0.21, 3))
 
 class InterestRate():
     def __init__(self):

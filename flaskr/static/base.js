@@ -12,14 +12,48 @@ function nextmonth() {
         age = 18 + Math.floor(data.time / 12)
         months = data.time % 12
         document.getElementById("age").textContent=age+"y "+months+"m";
-        document.getElementById("assets").textContent="£"+Math.round(data.value*100)/100;
+        document.getElementById("assets").textContent="Total Assets = £"+Math.round(data.value*100)/100;
 
 
         // statement
 
         statement = document.getElementById("statement")
+        statement.innerHTML = ""
+
+
         var income = document.createElement("p")
-        statement.appendChild()
+        a = (Math.round(100*data.balancesheet.income)/100).toFixed(2)
+        income.innerText = "Income: + £"+a;
+        income.classList.add("pos")
+        statement.appendChild(income)
+
+        var income = document.createElement("p")
+        b = (Math.round(100*data.balancesheet.tax)/100).toFixed(2)
+        income.innerText = "Tax: + £"+b;
+        income.classList.add("neg")
+        statement.appendChild(income)
+
+        var income = document.createElement("p")
+        c = (Math.round(100 * data.balancesheet.expenditures)/100).toFixed(2)
+        income.innerText = "Expenditures: + £"+c;
+        income.classList.add("neg")
+        statement.appendChild(income)
+
+        var income = document.createElement("p")
+        income.innerText = "Remaining: + £"+(Math.round(100*(a-b-c))/100).toFixed(2);
+        statement.appendChild(income)
+
+
+        var hr = document.createElement("hr")
+        statement.appendChild(hr)
+
+        for (const [key, value] of Object.entries(data.balancesheet.capitalgains)) {
+            var income = document.createElement("p")
+            income.innerText = key + ":  £"+(Math.round(100*value)/100).toFixed(2);
+            statement.appendChild(income)
+
+        }
+
 
 
         // setnews
@@ -53,17 +87,28 @@ function nextmonth() {
         for (const [key, value] of Object.entries(data.graphs)) {
             console.log(key,value)
             var graph = document.createElement('div');
-            var h3 = document.createElement('h3');
-            h3.innerText=key;
+            var name = document.createElement('div');
+            name.innerHTML='<b>'+key;
+            //name.textContent= key ;
+            name.classList.add("graphName")
 
-            var span = document.createElement('span');
-            span.innerText=Math.round((value.increasepm-1)*10000)/100+"% (Last month)"
-            span.innerText+=" / " + Math.round((value.increasepy-1)*10000)/100+"% (Last year)"
+            var month = document.createElement('span');
+            percentChangeMonth = Math.round((value.increasepm-1)*10000)/100;
+            textColour = (percentChangeMonth > 0) ? 'pos' : 'neg';
+            month.classList.add(textColour);
+            month.innerText=percentChangeMonth+"% (Last month)"
+
+            var year = document.createElement('span');
+            percentChangeYear = Math.round((value.increasepy-1)*10000)/100;
+            textColour = (percentChangeYear > 0) ? 'pos' : 'neg';
+            year.classList.add(textColour);
+            year.innerText=percentChangeYear+"% (Last year)"
 
             var img = document.createElement('img');
             img.src = value.graph;
-            graph.appendChild(h3);
-            graph.appendChild(span);
+            graph.appendChild(name);
+            graph.appendChild(month);
+            graph.appendChild(year);
             graph.appendChild(img);
             graphs.appendChild(graph)
 
@@ -82,6 +127,12 @@ function nextmonth() {
         console.log('Fetch Error :-S', err);
       });
 
+}
+
+function explevel(level){
+    fetch("/api/level/"+level).then(function(response) {
+        return response.json()
+      }).then(updateAssets())
 }
 
 function buy(assetname){

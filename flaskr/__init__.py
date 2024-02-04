@@ -36,16 +36,16 @@ def create_app(test_config=None):
     # spins up an instance of the game
     @app.route('/game')
     def game_page():
-        if not ("id" in session.keys()):
+        if not ("id" in session.keys()) or session["id"] >= len(game.players):
             id = len(game.players)
             session["id"] = id
             game.players.append(game.Player())
         return render_template("base.html", name = "username")
-        
+
 
     @app.route('/session')
     def sshow_session():
-        return session["user"]
+        return str(session["id"])
 
 
     @app.route("/")

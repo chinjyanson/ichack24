@@ -56,7 +56,9 @@ class AssetManager:
 
     def updatevalue(self, name: str, increase: float):
         """Update the value of an asset, based on the price increase"""
+        before = self.assets[name].value
         self.assets[name].value *= increase
+        return self.assets[name].value - before
 
     def getAssets(self):
         return self.assets.keys()

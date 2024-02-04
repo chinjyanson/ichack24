@@ -55,16 +55,16 @@ news = {
     # },
     "crypto" : {
         NewsLevels.LOW : [
-            ("Bitcoin founder jailed", "desc"),
-            ("Elon musk slams newest cryptocurrency dodocoin, 'its a scam'", "desc"),
-            ("Etherium prices hit a new low , speculators fear more to come", "desc"),
+            ("Bitcoin founder jailed", "Satoshi Nakamoto finally found and arrested in Japan"),
+            ("Elon musk slams newest cryptocurrency dodocoin, 'its a scam'", "Says catcoin is the future"),
+            ("Etherium prices hit a new low , speculators fear more to come", "Experts say that the dip in prices is due to the downturn in the global economy"),
         ],
         NewsLevels.MED : [
-            ("", "desc"),
-            ("Gold Prices Dip Moderately: Market Adjustments Prompt Caution Among Investors","desc")
+            ("Elon Musk climibs Mount Everest: says he wants to build an elevator", "Elon Musk, has teamed up with Yi Long Ma to build an elevator to the top of Mount Everest"),
+            ("Gold Prices Dip Moderately: Market Adjustments Prompt Caution Among Investors","Experts say that investors should be cautious as the market is expected to remain volatile"),
         ],
         NewsLevels.HIGH : [
-            ("'To the moon!!', reddit users rave at the recent metoric rise of notascamcoin", ""),
+            ("'To the moon!!', reddit users rave at the recent metoric rise of notascamcoin", "Notascamcoin has lived up to its name in becoming one of the leading cryptocurrencies in the market"),
             ("Sam Bankman-'freed': Sam is out of jail", "Sam Bankman Fried has been released on parole and announced that he will be creating a new company, FTY")
         ]
     }

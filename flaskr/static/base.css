@@ -2,11 +2,18 @@
 
 :root {
   /* --bg-color:#31302f; */
-  --bg-color:#F8F4EC;
+  --bg-color:#fcfcfc;
   /* --fg-color: #f2f0f0; */
   --fg-color: #402B3A;
   /* --accent-color:   #c1bfbf; */
   --accent-color: #402B3A;
+}
+
+.pos{
+  color: darkgreen;
+}
+.neg{
+  color:darkred;
 }
 
 .story{
@@ -59,6 +66,16 @@ table{
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
+  height: 40px;
+  padding: 0px 10px;
+}
+
+img{
+  width: 100%
+}
+button{
+  margin: 8px 3px;
+  padding: 2px 6px;
 }
 
 .center{
@@ -67,7 +84,7 @@ table, th, td {
 }
 
 .container {  display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 0.75fr;
     grid-template-rows: 1fr 1.1fr 0.9fr;
     gap: 0px 0px;
     grid-auto-flow: row;
@@ -100,19 +117,15 @@ table, th, td {
     grid-area: menu;
   }
 
-  .stats {  display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "happiness health";
-    grid-area: stats;
-  }
 
   .happiness { grid-area: happiness; }
-  .happiness span {}
-  .health { grid-area: health; }
+
+  .happinessbar {
+    width: 50%;
+    background-color: red
+  }
+  /* .happiness span {} */
+  /* .health { grid-area: health; } */
 
   .totalassets { grid-area: totalassets; }
 
@@ -132,10 +145,25 @@ table, th, td {
     grid-area: news;
   }
 
-  .header { grid-area: header; }
+  .header {
+    grid-area: header;
+    background-color: #9090909d;
+    color: white;
 
-  .stories { grid-area: stories; }
+  }
+
+  .stories { grid-area: stories;}
+
+  .story {
+    border-radius: 10px;
+    margin: 5px;
+    background-color: #e2ff8d3b;
+  }
 
   .graphs { grid-area: graphs; }
+
+  .graphName {
+    text-align: center;
+  }
 
   .assets { grid-area: assets; }

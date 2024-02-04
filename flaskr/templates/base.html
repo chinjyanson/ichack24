@@ -11,28 +11,29 @@
         <div class="menu center">
             <div class="stats">
                 <div class="happiness bordered">
-                    <span >Happiness</br><div class="happinessbar">9/10</div></span>
+                    <span >Happiness<div><div class="happinessbar">9/10</div></div></span>
                 </div>
-                <div class="health bordered">
-                    <span >Health</br><div class="healthbar">9/10</div></span>
-                </div>
-            </div>
+=            </div>
             <div class="totalassets">
-                <span id="assets" class="indicator">Total Assets: £5000</span>
+                <span id="assets" class="indicator">Total Assets: ?</span>
             </div>
             <div class="name">
-                <span class="indicator">Jeff Bloggs </span><span id="age">18y 0m</span>
+                <span class="indicator">Username - </span><span id="age">18y 0m</span>
                 <br>
-                <input id="nextmonth" type="button" class="myButton" value="Next month" onclick="nextmonth();" />
+                <div>
+                <input id="nextmonth" type="button" style="margin: 10px 0px; padding:10px 20px" value="Next month" onclick="nextmonth();" />
             </div>
         </div>
-        <div class="statement">
-            <div class="income">
-                <span>+500</span>
-            </div>
-            <div class="expenditures">
-                <span>-500</span>
-            </div>
+        <div id="statement" class="statement">
+            <span>Loading...</span>
+
+        </div>
+        <div>
+            <span>Expenditure level</span>
+            <span>Determines expediture cost, but also your happiness level</span><br>
+
+                <button onclick="explevel(0)">Low</button> <button onclick="explevel(1)">Medium</button> <button onclick="explevel(2)">High</button>
+
         </div>
         </div>
         <div class="news bordered" >
